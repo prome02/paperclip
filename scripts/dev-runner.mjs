@@ -76,6 +76,7 @@ if (process.env.npm_config_authenticated_private === "true") {
 const env = {
   ...process.env,
   PAPERCLIP_UI_DEV_MIDDLEWARE: "true",
+  XDG_CONFIG_HOME: process.env.XDG_CONFIG_HOME ?? `${process.env.HOME}/.paperclip-opencode`,
 };
 
 if (mode === "dev") {
