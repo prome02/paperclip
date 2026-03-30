@@ -1,0 +1,14 @@
+{
+  "title": "Agents",
+  "newAgent": "New Agent",
+  "agentDetail": "Agent Detail",
+  "status": "Status",
+  "active": "Active",
+  "inactive": "Inactive",
+  "budget": "Budget",
+  "model": "Model",
+  "adapter": "Adapter",
+  "noAgents": "No agents yet",
+  "hire": "Hire Agent",
+  "fire": "Remove Agent"
+}

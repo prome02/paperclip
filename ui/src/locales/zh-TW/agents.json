@@ -1,0 +1,14 @@
+{
+  "title": "代理人",
+  "newAgent": "新增代理人",
+  "agentDetail": "代理人詳情",
+  "status": "狀態",
+  "active": "運作中",
+  "inactive": "未啟用",
+  "budget": "預算",
+  "model": "模型",
+  "adapter": "適配器",
+  "noAgents": "目前沒有代理人",
+  "hire": "僱用代理人",
+  "fire": "移除代理人"
+}

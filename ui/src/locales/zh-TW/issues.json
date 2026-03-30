@@ -1,0 +1,15 @@
+{
+  "title": "任務",
+  "newIssue": "新增任務",
+  "issueDetail": "任務詳情",
+  "assignee": "負責人",
+  "priority": "優先級",
+  "dueDate": "截止日期",
+  "created": "建立時間",
+  "updated": "更新時間",
+  "open": "開放中",
+  "closed": "已關閉",
+  "inProgress": "進行中",
+  "blocked": "已阻塞",
+  "noIssues": "目前沒有任務"
+}

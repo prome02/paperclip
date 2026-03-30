@@ -1,0 +1,15 @@
+{
+  "title": "Issues",
+  "newIssue": "New Issue",
+  "issueDetail": "Issue Detail",
+  "assignee": "Assignee",
+  "priority": "Priority",
+  "dueDate": "Due Date",
+  "created": "Created",
+  "updated": "Updated",
+  "open": "Open",
+  "closed": "Closed",
+  "inProgress": "In Progress",
+  "blocked": "Blocked",
+  "noIssues": "No issues yet"
+}
