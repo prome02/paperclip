@@ -1,0 +1,11 @@
+{
+  "title": "費用",
+  "debits": "支出",
+  "credits": "抵扣",
+  "creditsSubtitle": "退款、抵扣和信用返還",
+  "net": "淨額",
+  "netSubtitle": "所選期間的支出減去抵扣",
+  "estimated": "預估",
+  "estimatedSubtitle": "尚未確認的預估支出",
+  "selectCompany": "請選擇公司以查看費用。"
+}

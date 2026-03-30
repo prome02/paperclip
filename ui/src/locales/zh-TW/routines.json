@@ -1,0 +1,16 @@
+{
+  "title": "例行任務",
+  "addRoutine": "新增例行任務",
+  "selectCompany": "請選擇公司以查看例行任務。",
+  "noRoutines": "目前沒有例行任務。",
+  "never": "從不",
+  "concurrencyModes": {
+    "coalesce_if_active": "若已有執行中的任務，僅保留一個後續排程。",
+    "always_enqueue": "無論是否正在執行，每次觸發都加入佇列。",
+    "skip_if_active": "執行中時，丟棄新的觸發事件。"
+  },
+  "catchUpModes": {
+    "skip_missed": "忽略排程器或例行任務暫停期間錯過的時間窗口。",
+    "enqueue_missed_with_cap": "恢復後以批次方式補執行錯過的排程。"
+  }
+}

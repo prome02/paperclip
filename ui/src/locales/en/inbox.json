@@ -1,0 +1,9 @@
+{
+  "title": "Inbox",
+  "markAsRead": "Mark as read",
+  "dismiss": "Dismiss",
+  "retry": "Retry",
+  "retrying": "Retrying…",
+  "runError": "Run exited with an error.",
+  "noItems": "Your inbox is empty."
+}

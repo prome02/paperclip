@@ -1,0 +1,11 @@
+{
+  "title": "Costs",
+  "debits": "Debits",
+  "credits": "Credits",
+  "creditsSubtitle": "Refunds, offsets, and credit returns",
+  "net": "Net",
+  "netSubtitle": "Debit minus credit for the selected period",
+  "estimated": "Estimated",
+  "estimatedSubtitle": "Estimated debits that are not yet invoice-authoritative",
+  "selectCompany": "Select a company to view costs."
+}
