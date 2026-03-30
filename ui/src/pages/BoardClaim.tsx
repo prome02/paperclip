@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useParams, useSearchParams } from "@/lib/router";
+import { useTranslation } from "react-i18next";
 import { accessApi } from "../api/access";
 import { authApi } from "../api/auth";
 import { queryKeys } from "../lib/queryKeys";
@@ -10,6 +11,7 @@ export function BoardClaimPage() {
   const queryClient = useQueryClient();
   const params = useParams();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation('auth');
   const token = (params.token ?? "").trim();
   const code = (searchParams.get("code") ?? "").trim();
   const currentPath = useMemo(
@@ -54,7 +56,7 @@ export function BoardClaimPage() {
         <div className="rounded-lg border border-border bg-card p-6">
           <h1 className="text-lg font-semibold">Claim challenge unavailable</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {statusQuery.error instanceof Error ? statusQuery.error.message : "Challenge is invalid or expired."}
+            {statusQuery.error instanceof Error ? statusQuery.error.message : t('boardClaim.invalidChallenge')}
           </p>
         </div>
       </div>
@@ -108,7 +110,7 @@ export function BoardClaimPage() {
 
         {claimMutation.error && (
           <p className="mt-3 text-sm text-destructive">
-            {claimMutation.error instanceof Error ? claimMutation.error.message : "Failed to claim board ownership"}
+            {claimMutation.error instanceof Error ? claimMutation.error.message : t('boardClaim.failedClaim')}
           </p>
         )}
 
@@ -117,7 +119,7 @@ export function BoardClaimPage() {
           onClick={() => claimMutation.mutate()}
           disabled={claimMutation.isPending}
         >
-          {claimMutation.isPending ? "Claiming…" : "Claim ownership"}
+          {claimMutation.isPending ? t('boardClaim.claiming') : t('boardClaim.claimOwnership')}
         </Button>
       </div>
     </div>

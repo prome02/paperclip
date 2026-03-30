@@ -14,6 +14,9 @@ import enInbox from './locales/en/inbox.json';
 import enCompanies from './locales/en/companies.json';
 import enActivity from './locales/en/activity.json';
 import enCosts from './locales/en/costs.json';
+import enAuth from './locales/en/auth.json';
+import enSettings from './locales/en/settings.json';
+import enPlugins from './locales/en/plugins.json';
 
 import zhTWCommon from './locales/zh-TW/common.json';
 import zhTWIssues from './locales/zh-TW/issues.json';
@@ -27,6 +30,9 @@ import zhTWInbox from './locales/zh-TW/inbox.json';
 import zhTWCompanies from './locales/zh-TW/companies.json';
 import zhTWActivity from './locales/zh-TW/activity.json';
 import zhTWCosts from './locales/zh-TW/costs.json';
+import zhTWAuth from './locales/zh-TW/auth.json';
+import zhTWSettings from './locales/zh-TW/settings.json';
+import zhTWPlugins from './locales/zh-TW/plugins.json';
 
 i18n
   .use(LanguageDetector)
@@ -46,6 +52,9 @@ i18n
         companies: enCompanies,
         activity: enActivity,
         costs: enCosts,
+        auth: enAuth,
+        settings: enSettings,
+        plugins: enPlugins,
       },
       'zh-TW': {
         common: zhTWCommon,
@@ -60,6 +69,9 @@ i18n
         companies: zhTWCompanies,
         activity: zhTWActivity,
         costs: zhTWCosts,
+        auth: zhTWAuth,
+        settings: zhTWSettings,
+        plugins: zhTWPlugins,
       },
     },
     defaultNS: 'common',

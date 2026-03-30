@@ -17,13 +17,14 @@ export function InstanceGeneralSettings() {
   const queryClient = useQueryClient();
   const [actionError, setActionError] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
+  const { t: ts } = useTranslation('settings');
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings" },
-      { label: "General" },
+      { label: ts('instanceSettings') },
+      { label: ts('general') },
     ]);
-  }, [setBreadcrumbs]);
+  }, [setBreadcrumbs, ts]);
 
   const generalQuery = useQuery({
     queryKey: queryKeys.instance.generalSettings,
@@ -38,7 +39,7 @@ export function InstanceGeneralSettings() {
       await queryClient.invalidateQueries({ queryKey: queryKeys.instance.generalSettings });
     },
     onError: (error) => {
-      setActionError(error instanceof Error ? error.message : "Failed to update general settings.");
+      setActionError(error instanceof Error ? error.message : ts('failedUpdateGeneral'));
     },
   });
 

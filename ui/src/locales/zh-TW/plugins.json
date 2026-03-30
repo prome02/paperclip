@@ -1,0 +1,10 @@
+{
+  "title": "插件",
+  "configuration": "設定",
+  "status": "狀態",
+  "noDescription": "未提供說明。",
+  "unknownError": "插件進入錯誤狀態，但沒有儲存錯誤訊息。",
+  "installedSuccess": "插件安裝成功",
+  "installedFailed": "插件安裝失敗",
+  "uninstalledSuccess": "插件移除成功"
+}

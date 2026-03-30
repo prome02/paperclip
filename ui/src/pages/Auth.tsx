@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useSearchParams } from "@/lib/router";
+import { useTranslation } from "react-i18next";
 import { authApi } from "../api/auth";
 import { queryKeys } from "../lib/queryKeys";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ export function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation('auth');
 
   const nextPath = useMemo(() => searchParams.get("next") || "/", [searchParams]);
   const { data: session, isLoading: isSessionLoading } = useQuery({
@@ -51,7 +53,7 @@ export function AuthPage() {
       navigate(nextPath, { replace: true });
     },
     onError: (err) => {
-      setError(err instanceof Error ? err.message : "Authentication failed");
+      setError(err instanceof Error ? err.message : t('authFailed'));
     },
   });
 
@@ -79,12 +81,10 @@ export function AuthPage() {
           </div>
 
           <h1 className="text-xl font-semibold">
-            {mode === "sign_in" ? "Sign in to Paperclip" : "Create your Paperclip account"}
+            {mode === "sign_in" ? t('signIn') : t('createAccount')}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {mode === "sign_in"
-              ? "Use your email and password to access this instance."
-              : "Create an account for this instance. Email confirmation is not required in v1."}
+            {mode === "sign_in" ? t('signInSubtitle') : t('createAccountSubtitle')}
           </p>
 
           <form
@@ -95,7 +95,7 @@ export function AuthPage() {
               event.preventDefault();
               if (mutation.isPending) return;
               if (!canSubmit) {
-                setError("Please fill in all required fields.");
+                setError(t('fillAllFields'));
                 return;
               }
               mutation.mutate();
@@ -148,15 +148,15 @@ export function AuthPage() {
               className={`w-full ${!canSubmit && !mutation.isPending ? "opacity-50" : ""}`}
             >
               {mutation.isPending
-                ? "Working…"
+                ? t('working')
                 : mode === "sign_in"
-                  ? "Sign In"
-                  : "Create Account"}
+                  ? t('signInButton')
+                  : t('createAccountButton')}
             </Button>
           </form>
 
           <div className="mt-5 text-sm text-muted-foreground">
-            {mode === "sign_in" ? "Need an account?" : "Already have an account?"}{" "}
+            {mode === "sign_in" ? t('needAccount') : t('haveAccount')}{" "}
             <button
               type="button"
               className="font-medium text-foreground underline underline-offset-2"
