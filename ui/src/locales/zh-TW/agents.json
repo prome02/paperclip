@@ -5,10 +5,14 @@
   "status": "狀態",
   "active": "運作中",
   "inactive": "未啟用",
+  "paused": "已暫停",
+  "error": "錯誤",
+  "all": "全部",
   "budget": "預算",
   "model": "模型",
   "adapter": "適配器",
   "noAgents": "目前沒有代理人",
-  "hire": "僱用代理人",
-  "fire": "移除代理人"
+  "createFirst": "建立第一個代理人以開始使用。",
+  "hire": "新增代理人",
+  "selectCompany": "請選擇公司以查看代理人。"
 }
