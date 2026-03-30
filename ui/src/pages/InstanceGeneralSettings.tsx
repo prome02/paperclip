@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { SlidersHorizontal } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { instanceSettingsApi } from "@/api/instanceSettings";
 import { useBreadcrumbs } from "../context/BreadcrumbContext";
 import { queryKeys } from "../lib/queryKeys";
 import { cn } from "../lib/utils";
 
+const SUPPORTED_LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'zh-TW', label: '繁體中文' },
+];
+
 export function InstanceGeneralSettings() {
   const { setBreadcrumbs } = useBreadcrumbs();
   const queryClient = useQueryClient();
   const [actionError, setActionError] = useState<string | null>(null);
+  const { t, i18n } = useTranslation('common');
+  const { t: ts } = useTranslation('settings');
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings" },
-      { label: "General" },
+      { label: ts('instanceSettings') },
+      { label: ts('general') },
     ]);
-  }, [setBreadcrumbs]);
+  }, [setBreadcrumbs, ts]);
 
   const generalQuery = useQuery({
     queryKey: queryKeys.instance.generalSettings,
@@ -31,7 +39,7 @@ export function InstanceGeneralSettings() {
       await queryClient.invalidateQueries({ queryKey: queryKeys.instance.generalSettings });
     },
     onError: (error) => {
-      setActionError(error instanceof Error ? error.message : "Failed to update general settings.");
+      setActionError(error instanceof Error ? error.message : ts('failedUpdateGeneral'));
     },
   });
 
@@ -68,6 +76,34 @@ export function InstanceGeneralSettings() {
           {actionError}
         </div>
       )}
+
+      <section className="rounded-xl border border-border bg-card p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-1.5">
+            <h2 className="text-sm font-semibold">{t('language')}</h2>
+            <p className="max-w-2xl text-sm text-muted-foreground">
+              Choose the display language for the interface.
+            </p>
+          </div>
+          <div className="flex gap-1 rounded-lg border border-border bg-muted p-0.5">
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <button
+                key={lang.code}
+                type="button"
+                onClick={() => i18n.changeLanguage(lang.code)}
+                className={cn(
+                  "rounded-md px-3 py-1 text-sm font-medium transition-colors",
+                  i18n.language === lang.code
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="rounded-xl border border-border bg-card p-5">
         <div className="flex items-start justify-between gap-4">

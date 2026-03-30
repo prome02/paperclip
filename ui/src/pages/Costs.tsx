@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type {
   BudgetPolicySummary,
@@ -118,27 +119,27 @@ function FinanceSummaryCard({
       </CardHeader>
       <CardContent className="grid gap-3 px-5 pb-5 pt-2 sm:grid-cols-2 xl:grid-cols-4">
         <MetricTile
-          label="Debits"
+          label={t('debits')}
           value={formatCents(debitCents)}
           subtitle={`${eventCount} total event${eventCount === 1 ? "" : "s"} in range`}
           icon={ArrowUpRight}
         />
         <MetricTile
-          label="Credits"
+          label={t('credits')}
           value={formatCents(creditCents)}
-          subtitle="Refunds, offsets, and credit returns"
+          subtitle={t('creditsSubtitle')}
           icon={ArrowDownLeft}
         />
         <MetricTile
-          label="Net"
+          label={t('net')}
           value={formatCents(netCents)}
-          subtitle="Debit minus credit for the selected period"
+          subtitle={t('netSubtitle')}
           icon={ReceiptText}
         />
         <MetricTile
-          label="Estimated"
+          label={t('estimated')}
           value={formatCents(estimatedDebitCents)}
-          subtitle="Estimated debits that are not yet invoice-authoritative"
+          subtitle={t('estimatedSubtitle')}
           icon={Coins}
         />
       </CardContent>
@@ -149,6 +150,7 @@ function FinanceSummaryCard({
 export function Costs() {
   const { selectedCompanyId } = useCompany();
   const { setBreadcrumbs } = useBreadcrumbs();
+  const { t } = useTranslation('costs');
   const queryClient = useQueryClient();
 
   const [mainTab, setMainTab] = useState<"overview" | "budgets" | "providers" | "billers" | "finance">("overview");
@@ -168,8 +170,8 @@ export function Costs() {
   } = useDateRange();
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Costs" }]);
-  }, [setBreadcrumbs]);
+    setBreadcrumbs([{ label: t('title') }]);
+  }, [setBreadcrumbs, t]);
 
   const [today, setToday] = useState(() => new Date().toDateString());
   const todayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

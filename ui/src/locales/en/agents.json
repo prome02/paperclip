@@ -1,0 +1,18 @@
+{
+  "title": "Agents",
+  "newAgent": "New Agent",
+  "agentDetail": "Agent Detail",
+  "status": "Status",
+  "active": "Active",
+  "inactive": "Inactive",
+  "paused": "Paused",
+  "error": "Error",
+  "all": "All",
+  "budget": "Budget",
+  "model": "Model",
+  "adapter": "Adapter",
+  "noAgents": "No agents yet",
+  "createFirst": "Create your first agent to get started.",
+  "hire": "New Agent",
+  "selectCompany": "Select a company to view agents."
+}

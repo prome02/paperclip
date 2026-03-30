@@ -1,0 +1,10 @@
+{
+  "title": "Plugins",
+  "configuration": "Configuration",
+  "status": "Status",
+  "noDescription": "No description provided.",
+  "unknownError": "Plugin entered an error state without a stored error message.",
+  "installedSuccess": "Plugin installed successfully",
+  "installedFailed": "Failed to install plugin",
+  "uninstalledSuccess": "Plugin uninstalled successfully"
+}

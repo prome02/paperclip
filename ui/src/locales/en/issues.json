@@ -1,0 +1,45 @@
+{
+  "title": "Issues",
+  "newIssue": "New Issue",
+  "issueDetail": "Issue Detail",
+  "assignee": "Assignee",
+  "priority": "Priority",
+  "dueDate": "Due Date",
+  "created": "Created",
+  "updated": "Updated",
+  "open": "Open",
+  "closed": "Closed",
+  "inProgress": "In Progress",
+  "blocked": "Blocked",
+  "noIssues": "No issues yet",
+  "createFirst": "Create your first issue to get started.",
+  "noMatch": "No issues match the current filters or search.",
+  "createIssue": "Create Issue",
+  "searchPlaceholder": "Search issues...",
+  "unassigned": "Unassigned",
+  "filter": "Filter",
+  "sort": "Sort",
+  "groupBy": "Group By",
+  "listView": "List view",
+  "boardView": "Board view",
+  "quickFilters": {
+    "all": "All",
+    "active": "Active",
+    "backlog": "Backlog",
+    "done": "Done"
+  },
+  "sortFields": {
+    "status": "Status",
+    "priority": "Priority",
+    "title": "Title",
+    "created": "Created",
+    "updated": "Updated"
+  },
+  "groupFields": {
+    "status": "Status",
+    "priority": "Priority",
+    "assignee": "Assignee",
+    "none": "None"
+  },
+  "selectCompany": "Select a company to view issues."
+}

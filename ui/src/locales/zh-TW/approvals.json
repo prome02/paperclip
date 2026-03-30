@@ -1,0 +1,11 @@
+{
+  "title": "審核",
+  "all": "全部",
+  "pending": "待審核",
+  "approved": "已批准",
+  "rejected": "已拒絕",
+  "noPending": "目前沒有待審核項目。",
+  "noApprovals": "目前沒有審核記錄。",
+  "failedApprove": "批准失敗",
+  "failedReject": "拒絕失敗"
+}

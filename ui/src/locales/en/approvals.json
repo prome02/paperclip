@@ -1,0 +1,11 @@
+{
+  "title": "Approvals",
+  "all": "All",
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected",
+  "noPending": "No pending approvals.",
+  "noApprovals": "No approvals yet.",
+  "failedApprove": "Failed to approve",
+  "failedReject": "Failed to reject"
+}

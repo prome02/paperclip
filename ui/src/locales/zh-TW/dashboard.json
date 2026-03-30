@@ -1,0 +1,23 @@
+{
+  "title": "儀表板",
+  "selectCompany": "請建立或選擇一個公司以查看儀表板。",
+  "welcome": "歡迎使用 Paperclip。請設定您的第一個公司和代理人以開始使用。",
+  "getStarted": "開始使用",
+  "metrics": {
+    "agentsEnabled": "已啟用代理人",
+    "tasksInProgress": "進行中任務",
+    "monthSpend": "本月花費",
+    "unlimitedBudget": "無限預算",
+    "pendingApprovals": "待審核項目",
+    "awaitingReview": "等待審核"
+  },
+  "charts": {
+    "runActivity": "執行活動",
+    "last14Days": "最近 14 天",
+    "issuesByPriority": "任務優先級分布",
+    "issuesByStatus": "任務狀態分布",
+    "successRate": "成功率"
+  },
+  "recentActivity": "最近活動",
+  "recentIssues": "最近任務"
+}

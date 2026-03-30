@@ -1,0 +1,9 @@
+{
+  "title": "收件匣",
+  "markAsRead": "標記已讀",
+  "dismiss": "關閉",
+  "retry": "重試",
+  "retrying": "重試中…",
+  "runError": "執行時發生錯誤。",
+  "noItems": "收件匣是空的。"
+}

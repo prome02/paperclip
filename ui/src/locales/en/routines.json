@@ -1,0 +1,16 @@
+{
+  "title": "Routines",
+  "addRoutine": "Add Routine",
+  "selectCompany": "Select a company to view routines.",
+  "noRoutines": "No routines yet.",
+  "never": "Never",
+  "concurrencyModes": {
+    "coalesce_if_active": "If a run is already active, keep just one follow-up run queued.",
+    "always_enqueue": "Queue every trigger occurrence, even if the routine is already running.",
+    "skip_if_active": "Drop new trigger occurrences while a run is still active."
+  },
+  "catchUpModes": {
+    "skip_missed": "Ignore windows that were missed while the scheduler or routine was paused.",
+    "enqueue_missed_with_cap": "Catch up missed schedule windows in capped batches after recovery."
+  }
+}

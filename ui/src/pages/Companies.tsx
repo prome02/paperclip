@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCompany } from "../context/CompanyContext";
 import { useDialog } from "../context/DialogContext";
@@ -38,6 +39,7 @@ export function Companies() {
   } = useCompany();
   const { openOnboarding } = useDialog();
   const { setBreadcrumbs } = useBreadcrumbs();
+  const { t } = useTranslation('companies');
   const queryClient = useQueryClient();
 
   const { data: stats } = useQuery({
@@ -69,8 +71,8 @@ export function Companies() {
   });
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Companies" }]);
-  }, [setBreadcrumbs]);
+    setBreadcrumbs([{ label: t('title') }]);
+  }, [setBreadcrumbs, t]);
 
   function startEdit(companyId: string, currentName: string) {
     setEditingId(companyId);
@@ -283,7 +285,7 @@ export function Companies() {
                       onClick={() => deleteMutation.mutate(company.id)}
                       disabled={deleteMutation.isPending}
                     >
-                      {deleteMutation.isPending ? "Deleting…" : "Delete"}
+                      {deleteMutation.isPending ? t('deleting') : t('delete')}
                     </Button>
                   </div>
                 </div>
