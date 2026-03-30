@@ -307,6 +307,9 @@ export const HEARTBEAT_RUN_STATUSES = [
 ] as const;
 export type HeartbeatRunStatus = (typeof HEARTBEAT_RUN_STATUSES)[number];
 
+export const HEARTBEAT_DEFAULT_INTERVAL_SEC = 900;
+export const HEARTBEAT_DEFAULT_COOLDOWN_SEC = 10;
+
 export const LIVE_EVENT_TYPES = [
   "heartbeat.run.queued",
   "heartbeat.run.status",

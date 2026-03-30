@@ -779,14 +779,22 @@ export async function runChildProcess(
         let stderr = "";
         let logChain: Promise<void> = Promise.resolve();
 
+        const killProcessGroup = (signal: "SIGTERM" | "SIGKILL") => {
+          try {
+            if (child.pid != null) process.kill(-child.pid, signal);
+          } catch {
+            child.kill(signal);
+          }
+        };
+
         const timeout =
           opts.timeoutSec > 0
             ? setTimeout(() => {
                 timedOut = true;
-                child.kill("SIGTERM");
+                killProcessGroup("SIGTERM");
                 setTimeout(() => {
                   if (!child.killed) {
-                    child.kill("SIGKILL");
+                    killProcessGroup("SIGKILL");
                   }
                 }, Math.max(1, opts.graceSec) * 1000);
               }, opts.timeoutSec * 1000)

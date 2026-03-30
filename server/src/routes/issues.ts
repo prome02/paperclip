@@ -856,11 +856,19 @@ export function issueRoutes(db: Db, storage: StorageService) {
     }
 
     const actor = getActorInfo(req);
-    const issue = await svc.create(companyId, {
-      ...req.body,
-      createdByAgentId: actor.agentId,
-      createdByUserId: actor.actorType === "user" ? actor.actorId : null,
-    });
+    let issue: Awaited<ReturnType<typeof svc.create>>;
+    try {
+      issue = await svc.create(companyId, {
+        ...req.body,
+        createdByAgentId: actor.agentId,
+        createdByUserId: actor.actorType === "user" ? actor.actorId : null,
+      });
+    } catch (e: any) {
+      if (e?.code === "23505") {
+        throw new HttpError(409, "Issue already exists (duplicate identifier or unique constraint)");
+      }
+      throw e;
+    }
 
     await logActivity(db, {
       companyId,

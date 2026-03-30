@@ -37,6 +37,8 @@ import {
   ROUTINE_STATUSES,
   ROUTINE_TRIGGER_KINDS,
   ROUTINE_TRIGGER_SIGNING_MODES,
+  HEARTBEAT_DEFAULT_INTERVAL_SEC,
+  HEARTBEAT_DEFAULT_COOLDOWN_SEC,
   deriveProjectUrlKey,
   normalizeAgentUrlKey,
 } from "@paperclipai/shared";
@@ -493,8 +495,8 @@ const COMPANY_LOGO_CONTENT_TYPE_EXTENSIONS: Record<string, string> = {
 const COMPANY_LOGO_FILE_NAME = "company-logo";
 
 const RUNTIME_DEFAULT_RULES: Array<{ path: string[]; value: unknown }> = [
-  { path: ["heartbeat", "cooldownSec"], value: 10 },
-  { path: ["heartbeat", "intervalSec"], value: 3600 },
+  { path: ["heartbeat", "cooldownSec"], value: HEARTBEAT_DEFAULT_COOLDOWN_SEC },
+  { path: ["heartbeat", "intervalSec"], value: HEARTBEAT_DEFAULT_INTERVAL_SEC },
   { path: ["heartbeat", "wakeOnOnDemand"], value: true },
   { path: ["heartbeat", "wakeOnAssignment"], value: true },
   { path: ["heartbeat", "wakeOnAutomation"], value: true },
