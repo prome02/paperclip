@@ -61,28 +61,28 @@ pnpm dev
 
 ## 5. Core Engineering Rules
 
-1. Keep changes company-scoped.
-Every domain entity should be scoped to a company and company boundaries must be enforced in routes/services.
+1. **Keep changes company-scoped.**
+   Every domain entity should be scoped to a company and company boundaries must be enforced in routes/services.
 
-2. Keep contracts synchronized.
-If you change schema/API behavior, update all impacted layers:
-- `packages/db` schema and exports
-- `packages/shared` types/constants/validators
-- `server` routes/services
-- `ui` API clients and pages
+2. **Keep contracts synchronized.**
+   If you change schema/API behavior, update all impacted layers:
+   - `packages/db` schema and exports
+   - `packages/shared` types/constants/validators
+   - `server` routes/services
+   - `ui` API clients and pages
 
-3. Preserve control-plane invariants.
-- Single-assignee task model
-- Atomic issue checkout semantics
-- Approval gates for governed actions
-- Budget hard-stop auto-pause behavior
-- Activity logging for mutating actions
+3. **Preserve control-plane invariants.**
+   - Single-assignee task model
+   - Atomic issue checkout semantics
+   - Approval gates for governed actions
+   - Budget hard-stop auto-pause behavior
+   - Activity logging for mutating actions
 
-4. Do not replace strategic docs wholesale unless asked.
-Prefer additive updates. Keep `doc/SPEC.md` and `doc/SPEC-implementation.md` aligned.
+4. **Do not replace strategic docs wholesale unless asked.**
+   Prefer additive updates. Keep `doc/SPEC.md` and `doc/SPEC-implementation.md` aligned.
 
-5. Keep plan docs dated and centralized.
-New plan documents belong in `doc/plans/` and should use `YYYY-MM-DD-slug.md` filenames.
+5. **Keep plan docs dated and centralized.**
+   New plan documents belong in `doc/plans/` and should use `YYYY-MM-DD-slug.md` filenames.
 
 ## 6. Database Change Workflow
 
@@ -106,19 +106,119 @@ Notes:
 - `packages/db/drizzle.config.ts` reads compiled schema from `dist/schema/*.js`
 - `pnpm db:generate` compiles `packages/db` first
 
-## 7. Verification Before Hand-off
+## 7. Commands Reference
 
-Run this full check before claiming done:
+### Build & Typecheck
 
 ```sh
-pnpm -r typecheck
-pnpm test:run
-pnpm build
+pnpm build              # Build all packages
+pnpm -r typecheck       # Type-check all packages
+pnpm typecheck          # Type-check root only
 ```
 
-If anything cannot be run, explicitly report what was not run and why.
+### Testing
 
-## 8. API and Auth Expectations
+```sh
+pnpm test:run           # Run all tests (non-watch mode)
+pnpm test                # Run tests in watch mode
+
+# Single test file (from root)
+pnpm test -- src/__tests__/my-file.test.ts
+npx vitest run src/__tests__/my-file.test.ts
+
+# Single test in package
+cd packages/my-package
+npx vitest run src/__tests__/my-file.test.ts
+
+# E2E tests
+pnpm test:e2e           # Headless
+pnpm test:e2e:headed     # Browser visible
+```
+
+### Database
+
+```sh
+pnpm db:generate         # Generate migration from schema changes
+pnpm db:migrate          # Apply migrations
+```
+
+### Development
+
+```sh
+pnpm dev                 # Full dev (API + UI, watch mode)
+pnpm dev:once            # Full dev without file watching
+pnpm dev:server          # Server only
+pnpm dev:ui              # UI only
+```
+
+## 8. Code Style Guidelines
+
+### TypeScript
+
+- **Use explicit types** for function parameters and return values
+- **Avoid `any`** — use `unknown` when type is truly unknown
+- **Prefer interfaces** over type aliases for object shapes
+- **Use `readonly`** for immutable arrays/objects
+- **Use optional chaining** (`?.`) and nullish coalescing (`??`) instead of manual null checks
+
+### Imports
+
+```typescript
+// Local imports — relative paths
+import { something } from './something';
+import { something } from '../utils/something';
+
+// Package imports — bare specifiers
+import { something } from '@paperclipai/shared';
+import { something } from 'drizzle-orm';
+
+// Type-only imports
+import type { SomeType } from './types';
+```
+
+### Naming Conventions
+
+| Thing | Convention | Example |
+|-------|-----------|---------|
+| Files | kebab-case | `my-file.ts`, `my-util.ts` |
+| Classes | PascalCase | `MyService`, `UserRepository` |
+| Functions | camelCase | `createUser()`, `getCompanyById()` |
+| Constants | SCREAMING_SNAKE | `MAX_RETRY_COUNT`, `API_BASE_URL` |
+| Types/Interfaces | PascalCase | `UserProps`, `CreateCompanyDto` |
+| Enums | PascalCase (members too) | `IssueStatus.Open` |
+
+### Error Handling
+
+```typescript
+// Always handle errors explicitly — never swallow
+try {
+  await doSomething();
+} catch (error) {
+  // Either handle or re-throw with context
+  throw new AppError('Failed to do something', { cause: error });
+}
+
+// For expected errors, use result types or specific error classes
+```
+
+### Async/Await
+
+- **Always use `async/await`** over raw Promises
+- **Never forget `await`** — check every async call
+- **Handle promise rejections** with try/catch at boundary layers
+
+### Null Handling
+
+```typescript
+// Prefer optional chaining
+const name = user?.profile?.name ?? 'Anonymous';
+
+// Avoid manual null checks
+if (user !== null && user !== undefined) { ... } // ❌
+if (user) { ... }                                   // ✅ (when null/undefined are equivalent)
+```
+
+## 9. API and Auth Expectations
 
 - Base path: `/api`
 - Board access is treated as full-control operator context
@@ -132,13 +232,13 @@ When adding endpoints:
 - write activity log entries for mutations
 - return consistent HTTP errors (`400/401/403/404/409/422/500`)
 
-## 9. UI Expectations
+## 10. UI Expectations
 
 - Keep routes and nav aligned with available API surface
 - Use company selection context for company-scoped pages
 - Surface failures clearly; do not silently ignore API errors
 
-## 10. Definition of Done
+## 11. Definition of Done
 
 A change is done when all are true:
 

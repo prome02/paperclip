@@ -50,3 +50,26 @@ tests/release-smoke/test-results/
 tests/release-smoke/playwright-report/
 .superset/
 .claude/worktrees/
+
+# Development logs
+dev.err.log
+dev.out.log
+
+# Generated reports
+report/
+
+# Release notes (auto-generated)
+releases/v*.md
+
+# Skill references (generated)
+skills/*/references/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Environment variants
+.env.local
+.env.development
+.env.production
